@@ -203,8 +203,29 @@
     border-radius: 6px;
   }
   .ph .ph-spec { margin-top: 10px; font-size: 9px; opacity: 0.55; }
+  .ph.has-image {
+    padding: 0; overflow: hidden; display: block;
+    border-style: solid; background: var(--forest-2);
+  }
+  .ph.has-image img,
+  .media-fill {
+    width: 100%; height: 100%; display: block;
+    object-fit: cover;
+  }
   .hero-ph-1 { position: absolute; top: 0; right: 0; width: 80%; height: 78%; }
-  .hero-ph-2 { position: absolute; bottom: 0; left: 0; width: 56%; height: 42%; }
+  .hero-ph-2 {
+    position: absolute; bottom: 24%; left: 0;
+    width: 58%; height: auto; aspect-ratio: 16 / 9;
+  }
+  .ph.has-image.hero-ph-2 {
+    padding: 8px;
+    background: var(--cream-2) !important;
+  }
+  .ph.has-image.hero-ph-2 img {
+    object-fit: contain;
+    object-position: center;
+    border-radius: 4px;
+  }
 
   /* hero specs strip */
   .hero-specs {
@@ -347,6 +368,50 @@
   .serv-card p {
     font-size: 14px; line-height: 1.6; opacity: 0.78; margin: 0 0 28px;
   }
+  .serv-products {
+    position: relative;
+    min-height: 150px; margin: auto 0 28px; padding: 20px 18px 18px;
+    display: flex; align-items: end; justify-content: center; gap: 18px;
+    border: 1px solid rgba(200,162,74,0.16);
+    border-radius: 8px;
+    background:
+      radial-gradient(circle at 50% 62%, rgba(244,239,227,0.11), transparent 42%),
+      radial-gradient(circle at 50% 102%, rgba(200,162,74,0.20), transparent 48%),
+      linear-gradient(135deg, rgba(244,239,227,0.035), rgba(244,239,227,0.01));
+    overflow: hidden;
+  }
+  .serv-products::before {
+    content: ''; position: absolute; left: 18%; right: 18%; bottom: 18px;
+    height: 18px; border-radius: 50%;
+    background: rgba(0,0,0,0.28); filter: blur(12px);
+  }
+  .serv-products::after {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,162,74,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,162,74,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.35; pointer-events: none;
+  }
+  .serv-products img {
+    position: relative; z-index: 1;
+    max-width: 46%; max-height: 118px; object-fit: contain;
+    filter: brightness(1.08) contrast(1.04) drop-shadow(0 16px 22px rgba(0,0,0,0.42));
+  }
+  .serv-products img[src*="luva-isolante"],
+  .serv-products img[src*="bota-isolante"] {
+    filter: brightness(1.18) contrast(1.08) drop-shadow(0 16px 22px rgba(0,0,0,0.46));
+  }
+  .serv-products.single { align-items: center; }
+  .serv-products.tools { gap: 10px; }
+  .serv-products.single img {
+    max-width: 92%; max-height: 126px;
+    border-radius: 4px;
+  }
+  .serv-products.tools img {
+    max-width: 48%; max-height: 132px;
+    border-radius: 0;
+  }
   .serv-card .meta {
     margin-top: auto;
     font-family: 'JetBrains Mono', monospace; font-size: 10px;
@@ -391,6 +456,7 @@
     overflow: hidden;
   }
   .van-stage .ph { width: 100%; height: 100%; border-radius: 0; }
+  .van-stage img { object-position: center; }
   .van-tag {
     position: absolute; padding: 8px 14px; background: var(--forest); color: var(--cream);
     font-family: 'JetBrains Mono', monospace; font-size: 10px;
@@ -435,6 +501,7 @@
     display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 100px; gap: 12px;
   }
   .gallery .ph { background-color: var(--forest-2); color: var(--gold); }
+  .gallery img { object-position: center; }
   .g1 { grid-column: 1/span 5; grid-row: 1/span 4; }
   .g2 { grid-column: 6/span 4; grid-row: 1/span 2; }
   .g3 { grid-column: 10/span 3; grid-row: 1/span 3; }
@@ -507,6 +574,11 @@
     color: var(--gold); border-radius: 50%;
     font-family: 'JetBrains Mono', monospace; font-size: 9px;
     letter-spacing: 0.15em; text-align: center;
+    overflow: hidden;
+  }
+  .founder-photo img {
+    width: 100%; height: 100%; display: block;
+    object-fit: cover;
   }
   .founder-name {
     font-family: 'Fraunces', serif; font-size: 26px; font-weight: 500;
@@ -1341,19 +1413,11 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="ph hero-ph-1">
-        <div>
-          <div>[ FOTO PRINCIPAL ]</div>
-          <div>Equipe em ensaio<br/>laboratório móvel · van</div>
-          <div class="ph-spec">PROPORÇÃO 4:5 · 1600×2000PX · COR</div>
-        </div>
+      <div class="ph has-image hero-ph-1">
+        <img src="images/site/van-frente.jpeg" alt="Van-laboratorio B&T em area industrial" class="media-fill" loading="eager" />
       </div>
-      <div class="ph hero-ph-2" style="background-color:var(--forest-3);">
-        <div>
-          <div>[ DETALHE ]</div>
-          <div>Luva isolante<br/>em teste</div>
-          <div class="ph-spec">3:4 · COR</div>
-        </div>
+      <div class="ph has-image hero-ph-2" style="background-color:var(--forest-3);">
+        <img src="images/site/Foto-fachada.png" alt="Fachada DPST" class="media-fill" loading="eager" />
       </div>
     </div>
   </div>
@@ -1401,10 +1465,10 @@
       </div>
     </div>
     <div class="sobre-figures">
-      <div class="ph light sf1"><div><div>[ FACHADA · SEDE AGUDOS ]</div><div class="ph-spec">4:3 · COR</div></div></div>
-      <div class="ph sf2"><div><div>[ DETALHE TÉCNICO ]</div><div class="ph-spec">2:3 · COR</div></div></div>
-      <div class="ph sf3"><div><div>[ EQUIPE EM CAMPO ]</div><div class="ph-spec">3:2 · COR</div></div></div>
-      <div class="ph light sf4"><div><div>[ RETRATO TÉCNICO ]</div><div class="ph-spec">3:4 · COR</div></div></div>
+      <div class="ph light has-image sf1"><img src="images/site/van-lateral.jpeg" alt="Van B&T com adesivagem lateral completa" class="media-fill" loading="lazy" /></div>
+      <div class="ph has-image sf2"><img src="images/site/ferramenta-ensaiadas.png" alt="Ferramentas isoladas ensaiadas e identificadas" class="media-fill" loading="lazy" /></div>
+      <div class="ph has-image sf3"><img src="images/site/ensaio-luvas.png" alt="Luvas e equipamentos preparados para ensaio" class="media-fill" loading="lazy" /></div>
+      <div class="ph light has-image sf4"><img src="images/site/painel-ensaio.png" alt="Painel de controle de ensaio dieletrico" class="media-fill" loading="lazy" /></div>
     </div>
   </div>
 </section>
@@ -1425,6 +1489,10 @@
         </div>
         <h3>Equipamentos de <em>proteção individual</em></h3>
         <p>Luvas isolantes, mangas, capacetes, calçados e vestimentas para arco elétrico — testados nos níveis dielétricos de 500V a 36kV.</p>
+        <div class="serv-products">
+          <img src="images/site/luva-isolante.png" alt="Luva isolante de borracha" loading="lazy" />
+          <img src="images/site/bota-isolante.png" alt="Bota isolante de seguranca" loading="lazy" />
+        </div>
         <div class="meta">Ensaio dielétrico</div>
       </div>
 
@@ -1437,6 +1505,10 @@
         </div>
         <h3>Equipamentos de <em>proteção coletiva</em></h3>
         <p>Mantas, lençóis, coberturas e protetores de linha — barreiras dielétricas que isolam zonas energizadas e protegem a equipe inteira.</p>
+        <div class="serv-products">
+          <img src="images/site/andaimes-isolados.png" alt="Andaime isolado" loading="lazy" />
+          <img src="images/site/cestas-aereas.png" alt="Cestas aereas isoladas" loading="lazy" />
+        </div>
         <div class="meta">Ensaio dielétrico</div>
       </div>
 
@@ -1449,6 +1521,10 @@
         </div>
         <h3>Ferramental <em>isolado</em></h3>
         <p>Alicates, chaves, varas de manobra e demais ferramentas isoladas até 1000V — ensaiadas conforme IEC e normas brasileiras vigentes.</p>
+        <div class="serv-products tools">
+          <img src="images/site/ferramentas-isoladas1.png" alt="Ferramentas isoladas para ensaio dieletrico" loading="lazy" />
+          <img src="images/site/ferramentas-isoladas2.png" alt="Conjunto de ferramentas isoladas" loading="lazy" />
+        </div>
         <div class="meta">Ensaio dielétrico</div>
       </div>
 
@@ -1472,12 +1548,8 @@
       </ul>
     </div>
     <div class="van-stage">
-      <div class="ph">
-        <div>
-          <div>[ FOTO DA VAN-LABORATÓRIO ]</div>
-          <div>Externa · em campo · cliente<br/>Hero shot — orientação paisagem</div>
-          <div class="ph-spec">5:4 · 2000×1600PX · COR · ALTA RES.</div>
-        </div>
+      <div class="ph has-image">
+        <img src="images/site/van-adesivo-completo.jpeg" alt="Van-laboratorio B&T em campo com adesivagem completa" class="media-fill" loading="lazy" />
       </div>
       <div class="van-tag van-tag-1"><span class="vd"></span>UNIDADE MÓVEL #03</div>
       <div class="van-tag van-tag-2">EM OPERAÇÃO</div>
@@ -1500,13 +1572,13 @@
       <p class="lede">Cada equipamento é submetido a tensão controlada, identificado, fotografado e documentado. Veja a equipe em ação — coloque aqui as fotos do dia-a-dia.</p>
     </div>
     <div class="gallery">
-      <div class="ph g1"><div><div>[ ENSAIO #1 — DESTAQUE ]</div><div class="ph-spec">1:1 · COR · ALTA RES.</div></div></div>
-      <div class="ph g2"><div><div>[ DETALHE LUVA ]</div></div></div>
-      <div class="ph g3"><div><div>[ TÉCNICO RETRATO ]</div></div></div>
-      <div class="ph g4"><div><div>[ TANQUE EM OPERAÇÃO ]</div></div></div>
-      <div class="ph g5"><div><div>[ ETIQUETAGEM ]</div></div></div>
-      <div class="ph g6"><div><div>[ EQUIPE NA VAN ]</div></div></div>
-      <div class="ph g7"><div><div>[ RELATÓRIO / TABLET ]</div></div></div>
+      <div class="ph has-image g1"><img src="images/site/ensaio-vista.png" alt="Tanques de imersao em operacao durante ensaio" class="media-fill" loading="lazy" /></div>
+      <div class="ph has-image g2"><img src="images/site/luva-ensaio.png" alt="Detalhe de luvas isolantes aprovadas" class="media-fill" loading="lazy" /></div>
+      <div class="ph has-image g3"><img src="images/site/van-frente.jpeg" alt="Van-laboratorio em area industrial" class="media-fill" loading="lazy" /></div>
+      <div class="ph has-image g4"><img src="images/site/ensaio-luvas.png" alt="Tanques de ensaio com ferramentas isoladas" class="media-fill" loading="lazy" /></div>
+      <div class="ph has-image g5"><img src="images/site/ferramenta-ensaiadas.png" alt="Etiquetas de rastreabilidade em luvas isolantes" class="media-fill" loading="lazy" /></div>
+      <div class="ph has-image g6"><img src="images/site/transformador.png" alt="Transformador de ensaio em operacao" class="media-fill" loading="lazy" /></div>
+      <div class="ph has-image g7"><img src="images/site/painel-ensaio.png" alt="Painel tecnico de controle do ensaio" class="media-fill" loading="lazy" /></div>
     </div>
   </div>
 </section>
@@ -1736,7 +1808,7 @@
     <div class="founders">
       <div class="founder">
         <div class="founder-head">
-          <div class="founder-photo">[ RETRATO<br/>AGUINALDO ]<br/><span style="opacity:.6;">1:1 · COR</span></div>
+          <div class="founder-photo"><img src="images/site/aguinaldo-bizzo.png" alt="Aguinaldo Bizzo de Almeida" loading="lazy" /></div>
           <div>
             <div class="founder-name">Aguinaldo Bizzo<br/>de Almeida</div>
             <div class="founder-role">Sócio-Fundador · Engº Eletricista</div>
@@ -1751,7 +1823,7 @@
       </div>
       <div class="founder">
         <div class="founder-head">
-          <div class="founder-photo">[ RETRATO<br/>DIEGO ]<br/><span style="opacity:.6;">1:1 · COR</span></div>
+          <div class="founder-photo"><img src="images/site/diego.png" alt="Diego Bruno Tognon" loading="lazy" /></div>
           <div>
             <div class="founder-name">Diego Bruno<br/>Tognon</div>
             <div class="founder-role">Sócio-Fundador · Engº Controle e Automação</div>
