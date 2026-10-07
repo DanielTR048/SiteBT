@@ -1,0 +1,9 @@
+{
+  // Site estático: o Cloudflare publica os arquivos da raiz do repositório.
+  // O "name" precisa ser igual ao nome do Worker no painel da Cloudflare.
+  "name": "sitebt",
+  "compatibility_date": "2026-10-06",
+  "assets": {
+    "directory": "./"
+  }
+}
