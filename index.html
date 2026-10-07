@@ -511,6 +511,7 @@
   }
   .gallery img { object-position: center; transition: transform .5s ease; }
   .gallery .ph:hover img { transform: scale(1.04); }
+  .gallery-more { display: none; }
 
   /* ============ PROCESSO ============ */
   .processo { background: var(--cream); border-top: 1px solid var(--line-soft); }
@@ -1236,6 +1237,17 @@
     .ensaios { padding: 56px 16px; }
     .ensaios h2 { font-size: clamp(28px, 9vw, 48px); }
     .gallery { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    /* no celular mostra só 4 fotos; o botão revela o resto */
+    .gallery:not(.expanded) .g-extra { display: none; }
+    .gallery-more {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; margin-top: 14px; padding: 15px;
+      background: transparent; color: var(--cream);
+      border: 1px solid rgba(244,239,227,0.35); border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;
+    }
+    .gallery-more-count { color: var(--gold); }
 
     /* processo — timeline no mobile */
     .processo { padding: 56px 16px; }
@@ -1668,18 +1680,21 @@
       <div class="gallery-row">
         <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/01.jpg" alt="Área do laboratório com bancada, carrinho e cabines de ensaio" class="media-fill" loading="lazy" /></div>
         <div class="ph has-image" style="--r:0.75"><img src="images/05%20Ensaios%20em%20campo/07.jpg" alt="Tanques de imersão com eletrodos suspensos por correntes" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/05.jpg" alt="Estação de ensaio sinalizada com tanques e fonte de alta tensão" class="media-fill" loading="lazy" /></div>
+        <div class="ph has-image g-extra" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/05.jpg" alt="Estação de ensaio sinalizada com tanques e fonte de alta tensão" class="media-fill" loading="lazy" /></div>
         <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/03.jpg" alt="Visão geral do galpão com motores e estação de ensaio montada" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image" style="--r:0.75"><img src="images/05%20Ensaios%20em%20campo/10.jpg" alt="Detalhe dos tanques de ensaio com eletrodos suspensos" class="media-fill" loading="lazy" /></div>
+        <div class="ph has-image g-extra" style="--r:0.75"><img src="images/05%20Ensaios%20em%20campo/10.jpg" alt="Detalhe dos tanques de ensaio com eletrodos suspensos" class="media-fill" loading="lazy" /></div>
       </div>
       <div class="gallery-row">
         <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/06.jpg" alt="Motores elétricos e área de ensaio com placa de advertência" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/02.jpg" alt="Estação de ensaio isolada por correntes com tanques de imersão" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image" style="--r:0.75"><img src="images/05%20Ensaios%20em%20campo/08.jpg" alt="Tanques de ensaio dielétrico com eletrodos e fonte de alta tensão" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/09.jpg" alt="Área de ensaio isolada com sinalização de segurança" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/04.jpg" alt="Tanques de imersão isolados ao lado de motor elétrico" class="media-fill" loading="lazy" /></div>
+        <div class="ph has-image g-extra" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/02.jpg" alt="Estação de ensaio isolada por correntes com tanques de imersão" class="media-fill" loading="lazy" /></div>
+        <div class="ph has-image g-extra" style="--r:0.75"><img src="images/05%20Ensaios%20em%20campo/08.jpg" alt="Tanques de ensaio dielétrico com eletrodos e fonte de alta tensão" class="media-fill" loading="lazy" /></div>
+        <div class="ph has-image g-extra" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/09.jpg" alt="Área de ensaio isolada com sinalização de segurança" class="media-fill" loading="lazy" /></div>
+        <div class="ph has-image g-extra" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/04.jpg" alt="Tanques de imersão isolados ao lado de motor elétrico" class="media-fill" loading="lazy" /></div>
       </div>
     </div>
+    <button type="button" class="gallery-more" id="galleryMore" aria-expanded="false" onclick="toggleGallery()">
+      Ver mais fotos <span class="gallery-more-count">+6</span>
+    </button>
   </div>
 </section>
 
@@ -2019,6 +2034,18 @@
   function switchDash(idx) {
     document.querySelectorAll('.dash-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
     document.querySelectorAll('.dash-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+  }
+
+  /* ── Galeria: ver mais (celular) ── */
+  function toggleGallery() {
+    const gallery = document.querySelector('.gallery');
+    const btn = document.getElementById('galleryMore');
+    const open = gallery.classList.toggle('expanded');
+    btn.setAttribute('aria-expanded', open);
+    btn.innerHTML = open
+      ? 'Ver menos fotos'
+      : 'Ver mais fotos <span class="gallery-more-count">+6</span>';
+    if (!open) gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   /* ── Web3Forms sender ── */
