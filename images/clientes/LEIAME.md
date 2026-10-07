@@ -2,13 +2,16 @@
 
 Salve aqui as logos (PNG com fundo transparente, ~400px de largura) com estes nomes:
 
-- fs-bioenergia.png
-- gerdau.png
 - suzano.png
-- norte-energia.png
+- eldorado.png
+- hydro.png
 - albras.png
-- alunorte.png
+- gerdau.png
+- fs-bioenergia.png
 - bosch.png
+- auren.png
+- bracell.png
+- norte-energia.png
 - cevasa.png
 
 Enquanto o arquivo não existir, o site mostra o nome da empresa no lugar da logo.

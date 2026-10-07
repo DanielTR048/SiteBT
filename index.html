@@ -625,14 +625,16 @@
     border-radius: 8px; overflow: hidden;
   }
   .logo-cell {
-    background: var(--cream); aspect-ratio: 2/1;
+    background: var(--cream); aspect-ratio: 2/1; min-height: 0;
     display: grid; place-items: center;
     font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
     letter-spacing: 0.05em; color: var(--forest); opacity: 0.55;
     transition: opacity .2s;
   }
   .logo-cell:hover { opacity: 1; }
+  .logo-cell:has(img) { position: relative; }
   .logo-cell img {
+    position: absolute; inset: 0; margin: auto;
     max-width: 68%; max-height: 52%; object-fit: contain; display: block;
     filter: grayscale(1) contrast(1.1); transition: filter .25s;
   }
@@ -1924,17 +1926,18 @@
     </div>
     <div class="logos-grid">
       <!-- Logos em images/clientes/<nome>.png — se o arquivo não existir, mostra o nome -->
-      <div class="logo-cell"><img src="images/clientes/fs-bioenergia.png" alt="FS Bioenergia" loading="lazy" onerror="this.remove()" /><span>FS BIOENERGIA</span></div>
-      <div class="logo-cell"><img src="images/clientes/gerdau.png" alt="Gerdau" loading="lazy" onerror="this.remove()" /><span>GERDAU</span></div>
       <div class="logo-cell"><img src="images/clientes/suzano.png" alt="Suzano" loading="lazy" onerror="this.remove()" /><span>SUZANO</span></div>
-      <div class="logo-cell"><img src="images/clientes/norte-energia.png" alt="Norte Energia" loading="lazy" onerror="this.remove()" /><span>NORTE ENERGIA</span></div>
+      <div class="logo-cell"><img src="images/clientes/eldorado.png" alt="Eldorado Brasil" loading="lazy" onerror="this.remove()" /><span>ELDORADO BRASIL</span></div>
+      <div class="logo-cell"><img src="images/clientes/hydro.png" alt="Hydro" loading="lazy" onerror="this.remove()" /><span>HYDRO</span></div>
       <div class="logo-cell"><img src="images/clientes/albras.png" alt="Albras" loading="lazy" onerror="this.remove()" /><span>ALBRAS</span></div>
-      <div class="logo-cell"><img src="images/clientes/alunorte.png" alt="Alunorte" loading="lazy" onerror="this.remove()" /><span>ALUNORTE</span></div>
+      <div class="logo-cell"><img src="images/clientes/gerdau.png" alt="Gerdau" loading="lazy" onerror="this.remove()" /><span>GERDAU</span></div>
+      <div class="logo-cell"><img src="images/clientes/fs-bioenergia.png" alt="FS Bioenergia" loading="lazy" onerror="this.remove()" /><span>FS BIOENERGIA</span></div>
       <div class="logo-cell"><img src="images/clientes/bosch.png" alt="Bosch" loading="lazy" onerror="this.remove()" /><span>BOSCH</span></div>
+      <div class="logo-cell"><img src="images/clientes/auren.png" alt="Auren Energia" loading="lazy" onerror="this.remove()" /><span>AUREN ENERGIA</span></div>
+      <div class="logo-cell"><img src="images/clientes/bracell.png" alt="Bracell" loading="lazy" onerror="this.remove()" /><span>BRACELL</span></div>
+      <div class="logo-cell"><img src="images/clientes/norte-energia.png" alt="Norte Energia" loading="lazy" onerror="this.remove()" /><span>NORTE ENERGIA</span></div>
       <div class="logo-cell"><img src="images/clientes/cevasa.png" alt="Cevasa" loading="lazy" onerror="this.remove()" /><span>CEVASA</span></div>
-      <div class="logo-cell">+ 34 OUTROS</div>
-      <div class="logo-cell" style="background:var(--forest);color:var(--gold);opacity:1;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;">VER TODOS →</div>
-    </div>
+      <div class="logo-cell">+ 31 OUTROS</div>    </div>
   </div>
 </section>
 
