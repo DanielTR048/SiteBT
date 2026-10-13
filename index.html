@@ -730,15 +730,13 @@
   .ensaios .lede { font-size: 16px; opacity: 0.78; line-height: 1.6; max-width: 440px; }
   /* galeria justificada: cada foto cresce na proporção da sua largura (--r = largura/altura),
      então todas da mesma linha ficam com a mesma altura e nenhuma é cortada */
-  .gallery { display: flex; flex-direction: column; gap: 10px; }
-  .gallery-row { display: flex; gap: 10px; }
+  .gallery { display: flex; gap: 10px; }
   .gallery .ph {
     flex: var(--r) 1 0; aspect-ratio: var(--r); min-width: 0;
     background-color: var(--forest-2); color: var(--gold);
   }
   .gallery img { object-position: center; transition: transform .5s ease; }
   .gallery .ph:hover img { transform: scale(1.04); }
-  .gallery-more { display: none; }
 
   /* ============ PROCESSO ============ */
   .processo { background: var(--cream); border-top: 1px solid var(--line-soft); }
@@ -1372,9 +1370,6 @@
 
     /* ensaios */
     .ensaios-head { grid-template-columns: 1fr; gap: 20px; margin-bottom: 40px; }
-    .gallery { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
-    .gallery-row { display: contents; }
-    .gallery .ph { aspect-ratio: 1; }
 
     /* processo */
     .steps { grid-template-columns: repeat(2, 1fr); }
@@ -1467,18 +1462,10 @@
     /* ensaios */
     .ensaios { padding: 56px 16px; }
     .ensaios h2 { font-size: clamp(28px, 9vw, 48px); }
-    .gallery { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-    /* no celular mostra só 4 fotos; o botão revela o resto */
-    .gallery:not(.expanded) .g-extra { display: none; }
-    .gallery-more {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      width: 100%; margin-top: 14px; padding: 15px;
-      background: transparent; color: var(--cream);
-      border: 1px solid rgba(244,239,227,0.35); border-radius: 999px;
-      font-family: 'JetBrains Mono', monospace; font-size: 11px;
-      letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;
-    }
-    .gallery-more-count { color: var(--gold); }
+    /* celular: foto larga em cima, duas embaixo */
+    .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .gallery .ph { aspect-ratio: 1; }
+    .gallery .ph:first-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
 
     /* processo — timeline no mobile */
     .processo { padding: 56px 16px; }
@@ -1696,7 +1683,7 @@
     <div class="hero-specs-inner">
       <div class="hero-spec"><div class="hero-spec-num">28k+</div><div class="hero-spec-label">Equipamentos<br/>ensaiados</div></div>
       <div class="hero-spec"><div class="hero-spec-num">152</div><div class="hero-spec-label">Laudos técnicos<br/>emitidos</div></div>
-      <div class="hero-spec"><div class="hero-spec-num">42</div><div class="hero-spec-label">Clientes em<br/>todo Brasil</div></div>
+      <div class="hero-spec"><div class="hero-spec-num">70</div><div class="hero-spec-label">Clientes em<br/>todo Brasil</div></div>
       <div class="hero-spec"><div class="hero-spec-num">25y</div><div class="hero-spec-label">Experiência<br/>do grupo DPST</div></div>
     </div>
   </div>
@@ -1762,7 +1749,7 @@
           </svg>
         </div>
         <h3>Equipamentos de <em>proteção individual</em></h3>
-        <p>Ensaio dielétrico em luvas isolantes de borracha (Classe 00 a 4), mangas isolantes, capacetes, calçados isolantes e vestimentas para arco elétrico — de 500 V a 36 kV, com medição de corrente de fuga.</p>
+        <p>Ensaio dielétrico em luvas isolantes de borracha (Classe 00 a 4), mangas isolantes, capacetes e calçados isolantes — de 500 V a 36 kV, com medição de corrente de fuga.</p>
         <div class="serv-products">
           <img src="images/site/luva-isolante.png" alt="Ensaio dielétrico em luva isolante de borracha" loading="lazy" />
           <img src="images/site/bota-isolante.png" alt="Teste dielétrico em bota isolante de proteção elétrica" loading="lazy" />
@@ -1816,7 +1803,6 @@
           <li>Ensaio dielétrico de manga isolante de borracha</li>
           <li>Teste dielétrico em calçado isolante e bota de proteção elétrica</li>
           <li>Inspeção e ensaio em capacete para risco elétrico</li>
-          <li>Capas e vestimentas de proteção contra arco elétrico</li>
         </ul>
       </div>
       <div class="scope-col">
@@ -1914,7 +1900,7 @@
       <div class="atend-stats">
         <div class="atend-stat"><span class="atend-num">27</span><span class="atend-label">Estados + DF<br/>no raio de atendimento</span></div>
         <div class="atend-stat"><span class="atend-num">5</span><span class="atend-label">Regiões<br/>do país</span></div>
-        <div class="atend-stat"><span class="atend-num">42</span><span class="atend-label">Clientes<br/>atendidos</span></div>
+        <div class="atend-stat"><span class="atend-num">70</span><span class="atend-label">Clientes<br/>atendidos</span></div>
       </div>
       <div class="atend-regions">
         <span>Norte</span><span>Nordeste</span><span>Centro-Oeste</span><span>Sudeste</span><span>Sul</span>
@@ -1991,24 +1977,10 @@
       <p class="lede">Cada equipamento é submetido a tensão controlada, identificado, fotografado e documentado. Veja a estrutura montada em campo.</p>
     </div>
     <div class="gallery">
-      <div class="gallery-row">
-        <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/01.jpg" alt="Área do laboratório com bancada, carrinho e cabines de ensaio" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image" style="--r:0.75"><img src="images/05%20Ensaios%20em%20campo/07.jpg" alt="Tanques de imersão com eletrodos suspensos por correntes" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image g-extra" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/05.jpg" alt="Estação de ensaio sinalizada com tanques e fonte de alta tensão" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/03.jpg" alt="Visão geral do galpão com motores e estação de ensaio montada" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image g-extra" style="--r:0.75"><img src="images/05%20Ensaios%20em%20campo/10.jpg" alt="Detalhe dos tanques de ensaio com eletrodos suspensos" class="media-fill" loading="lazy" /></div>
-      </div>
-      <div class="gallery-row">
-        <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/06.jpg" alt="Motores elétricos e área de ensaio com placa de advertência" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image g-extra" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/02.jpg" alt="Estação de ensaio isolada por correntes com tanques de imersão" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image g-extra" style="--r:0.75"><img src="images/05%20Ensaios%20em%20campo/08.jpg" alt="Tanques de ensaio dielétrico com eletrodos e fonte de alta tensão" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image g-extra" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/09.jpg" alt="Área de ensaio isolada com sinalização de segurança" class="media-fill" loading="lazy" /></div>
-        <div class="ph has-image g-extra" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/04.jpg" alt="Tanques de imersão isolados ao lado de motor elétrico" class="media-fill" loading="lazy" /></div>
-      </div>
+      <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/01.jpg" alt="Área do laboratório com bancada, carrinho e cabines de ensaio" class="media-fill" loading="lazy" /></div>
+      <div class="ph has-image" style="--r:0.75"><img src="images/05%20Ensaios%20em%20campo/07.jpg" alt="Tanques de imersão com eletrodos suspensos por correntes" class="media-fill" loading="lazy" /></div>
+      <div class="ph has-image" style="--r:1.3333"><img src="images/05%20Ensaios%20em%20campo/03.jpg" alt="Visão geral do galpão com motores e estação de ensaio montada" class="media-fill" loading="lazy" /></div>
     </div>
-    <button type="button" class="gallery-more" id="galleryMore" aria-expanded="false" onclick="toggleGallery()">
-      Ver mais fotos <span class="gallery-more-count">+6</span>
-    </button>
   </div>
 </section>
 
@@ -2247,7 +2219,7 @@
         <div class="section-eyebrow"><span>10</span> Confiança</div>
         <h2>Empresas que confiam na <em>nossa engenharia.</em></h2>
       </div>
-      <div class="meta">42 clientes / Brasil</div>
+      <div class="meta">70 clientes / Brasil</div>
     </div>
     <div class="logos-grid">
       <!-- Logos em images/clientes/<nome>.png — se o arquivo não existir, mostra o nome -->
@@ -2262,7 +2234,7 @@
       <div class="logo-cell"><img src="images/clientes/bracell.png" alt="Bracell" loading="lazy" onerror="this.remove()" /><span>BRACELL</span></div>
       <div class="logo-cell"><img src="images/clientes/norte-energia.png" alt="Norte Energia" loading="lazy" onerror="this.remove()" /><span>NORTE ENERGIA</span></div>
       <div class="logo-cell"><img src="images/clientes/cevasa.png" alt="Cevasa" loading="lazy" onerror="this.remove()" /><span>CEVASA</span></div>
-      <div class="logo-cell">+ 31 OUTROS</div>    </div>
+      <div class="logo-cell">+ 59 OUTROS</div>    </div>
   </div>
 </section>
 
@@ -2385,18 +2357,6 @@
   function switchDash(idx) {
     document.querySelectorAll('.dash-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
     document.querySelectorAll('.dash-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
-  }
-
-  /* ── Galeria: ver mais (celular) ── */
-  function toggleGallery() {
-    const gallery = document.querySelector('.gallery');
-    const btn = document.getElementById('galleryMore');
-    const open = gallery.classList.toggle('expanded');
-    btn.setAttribute('aria-expanded', open);
-    btn.innerHTML = open
-      ? 'Ver menos fotos'
-      : 'Ver mais fotos <span class="gallery-more-count">+6</span>';
-    if (!open) gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   /* ── Web3Forms sender ── */
