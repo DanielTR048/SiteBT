@@ -1585,6 +1585,14 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "n07ab281ze");
 </script>
+<!-- Google tag (gtag.js) - Google Ads -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18504076619"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18504076619');
+</script>
 </head>
 <body>
 
@@ -2385,6 +2393,10 @@
       if (data.success) {
         form.style.display = 'none';
         document.getElementById('formSuccess').style.display = 'flex';
+        /* Event snippet for Solicitar cotação conversion page */
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {'send_to': 'AW-18504076619/_NWqCKTs4qQdEMuat_dE'});
+        }
       } else {
         throw new Error(data.message);
       }
